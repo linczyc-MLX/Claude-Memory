@@ -1,7 +1,7 @@
 # Repository Map — Not4Sale Ecosystem
 
 > **Purpose**: Central reference for all repos, their purpose, URLs, and access.
-> **Last Updated**: 2026-02-27
+> **Last Updated**: 2026-03-01
 
 ---
 
@@ -10,6 +10,7 @@
 ### N4S (Advisor Platform)
 - **Repo**: `linczyc-MLX/N4S`
 - **URL**: https://github.com/linczyc-MLX/N4S
+- **Visibility**: Public
 - **Purpose**: Main advisor dashboard — KYC, FYI, MVP, KYM, KYS, VMX, BYT modules
 - **Tech**: React 18 + TypeScript (CRA), PHP backend, MySQL/MariaDB
 - **Deploy**: GitHub Actions → IONOS (static site + PHP API)
@@ -25,15 +26,25 @@
 - **Purpose**: Client-facing briefing portal — voice recording, AI transcription, PDF reports, Parker AI
 - **Tech**: React + TypeScript (Vite), Node.js/Express, PostgreSQL, shadcn/ui + Tailwind
 - **Deploy**: VPS (74.208.250.22) via PM2
-- **Live URL**: https://luxebrief.not-4.sale (or Replit dev URL)
-- **Has CLAUDE.md**: Yes (created 2026-02-27)
+- **Live URL**: https://luxebrief.not-4.sale
+- **Has CLAUDE.md**: Yes
 
-### Claude Memory (This Repo)
-- **Repo**: `linczyc-MLX/claude-memory`
-- **URL**: https://github.com/linczyc-MLX/claude-memory
+### Claude-Memory (This Repo)
+- **Repo**: `linczyc-MLX/Claude-Memory`
+- **URL**: https://github.com/linczyc-MLX/Claude-Memory
+- **Visibility**: Public
 - **Purpose**: Canonical session memory — universal preferences, topic handovers, project state
-- **Visibility**: Private
 - **Clone at start of every session**
+- **Has CLAUDE.md**: Yes
+- **Has .claude/commands/**: Yes (start-session, end-session)
+
+### Parker API
+- **Repo**: `linczyc-MLX/N4S-Parker-API`
+- **URL**: https://github.com/linczyc-MLX/N4S-Parker-API
+- **Purpose**: Parker AI advisor backend (standalone microservice on VPS)
+- **Tech**: Express + TypeScript, Anthropic SDK, SSE streaming, PostgreSQL
+- **Deploy**: VPS (74.208.250.22) via PM2 (`parker-api`)
+- **Live URL**: https://parker.not-4.sale
 
 ### VMX Standalone
 - **Repo**: `linczyc-MLX/N4S-VisualMatrix`
@@ -59,11 +70,11 @@
 - **IP**: 74.208.250.22
 - **SSH**: `ssh root@74.208.250.22`
 - **Services**:
-  - RFQ API (rfq.not-4.sale) — PM2 process
-  - Luxebrief (luxebrief.not-4.sale) — PM2 process
-  - Parker API (parker.not-4.sale) — planned, PM2 process
+  - RFQ API (rfq.not-4.sale) — PM2 process `n4s-rfq-api`
+  - Luxebrief (luxebrief.not-4.sale) — PM2 process `luxebrief`
+  - Parker API (parker.not-4.sale) — PM2 process `parker-api`
 - **Databases**:
-  - PostgreSQL: rfq_db, luxebrief_db, parker_db (planned)
+  - PostgreSQL: rfq_db, luxebrief_db, parker_db
 
 ## IONOS Details
 
@@ -75,11 +86,11 @@
 
 ## Access Notes
 
-- GitHub tokens are repo-scoped. If cloning fails, the token may need updating.
-- N4S repo token is typically embedded in the CLAUDE.md or provided at session start.
-- Claude-memory repo requires its own token (may differ from N4S token).
-- VPS SSH access requires the SSH key configured for root@74.208.250.22.
-- IONOS deployment is automated via GitHub Actions — no manual access needed for deploys.
+- **N4S and Claude-Memory are public repos** — no token needed to clone
+- **Luxebrief is private** — requires GitHub token or SSH key
+- VPS SSH access requires the SSH key configured for root@74.208.250.22
+- IONOS deployment is automated via GitHub Actions — no manual access needed for deploys
+- If cloning fails with auth error, try `git -c http.proxyAuthMethod=basic clone` or check token scope
 
 ---
 
