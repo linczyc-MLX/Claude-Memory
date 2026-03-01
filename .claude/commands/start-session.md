@@ -4,7 +4,7 @@ Load universal memory from this repo, then prepare for work.
 
 ## Usage
 ```
-/start-session {TOPIC}    — load a specific topic (BYT, PARKER, BRAND, etc.)
+/start-session {TOPIC}    — load a specific topic (BYT, PARKER, BRAND, PDF, etc.)
 /start-session            — load universal memory only, list available topics
 ```
 
@@ -29,6 +29,7 @@ Available topics:
   - BYT    — Build Your Team module (N4S)
   - PARKER — Parker AI advisor (N4S + Luxebrief)
   - BRAND  — Universal brand guidelines (N4S + Luxebrief)
+  - PDF    — PDF generation & reports (N4S + Luxebrief)
   {any other .md files found in topics/}
 
 To start with a topic: /start-session {TOPIC}
@@ -46,11 +47,14 @@ Then STOP here — wait for Michael to choose.
 - From the topic file, identify which projects are involved (N4S, Luxebrief, or both)
 - Read `projects/{PROJECT}.md` for each
 
-#### 3c. Clone Project Repos
-Clone each relevant project repo:
+#### 3c. Clone or Update Project Repos
+For each relevant project repo, clone if missing or pull latest if already cloned:
 ```bash
-git clone https://github.com/linczyc-MLX/N4S.git /tmp/n4s
-git clone https://github.com/linczyc-MLX/Luxebrief.git /tmp/luxebrief
+# N4S
+if [ -d /tmp/n4s ]; then cd /tmp/n4s && git pull; else git clone https://github.com/linczyc-MLX/N4S.git /tmp/n4s; fi
+
+# Luxebrief (only if topic requires it)
+if [ -d /tmp/luxebrief ]; then cd /tmp/luxebrief && git pull; else git clone https://github.com/linczyc-MLX/Luxebrief.git /tmp/luxebrief; fi
 ```
 If clone fails, retry with `git -c http.proxyAuthMethod=basic clone`.
 
