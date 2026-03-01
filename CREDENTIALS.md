@@ -27,7 +27,8 @@
 
 - **SSH**: root@74.208.250.22 (key-based auth)
 - **PostgreSQL**: Local on VPS, password in environment files
-- **PM2 processes**: rfq-api, luxebrief (parker-api planned)
+- **PM2 processes**: n4s-rfq-api, luxebrief, parker-api, mlx-consulting, mailflow, prompt-architect
+- **SSH key**: `~/.ssh/parker_vps` (ed25519, added 2026-03-01)
 - **Environment files**: `.env` in each service directory on VPS
 
 ## RapidAPI

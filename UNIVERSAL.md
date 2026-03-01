@@ -1,7 +1,7 @@
 # Universal Memory — Michael Linczyc
 
 > **This file is loaded at the start of every Claude session, regardless of topic, project, or interface.**
-> **Last Updated**: 2026-02-27
+> **Last Updated**: 2026-03-01
 
 ---
 
@@ -61,9 +61,10 @@ These apps share a VPS backend, database layer, and brand identity. Data integri
 
 | Topic | Description | Status | Last Touched | Projects |
 |-------|-------------|--------|-------------|----------|
-| BYT | Build Your Team module — consultant matching, RFQ, synergy | Active dev | 2026-02-25 | N4S |
-| PARKER | Parker AI assistant — Phase 2 standalone microservice | Architecture approved | 2026-02-25 | N4S + Luxebrief |
+| BYT | Build Your Team module — consultant matching, RFQ, synergy | Active dev | 2026-02-28 | N4S |
+| PARKER | Parker AI assistant — Phase 2 live, knowledge audit done | Live (v2.0.0-phase2d) | 2026-03-01 | N4S + Luxebrief |
 | BRAND | Universal brand guidelines for Not4Sale ecosystem | In progress | 2026-02-27 | N4S + Luxebrief |
+| BESTRENTNJ | Township news tool for Ricky (personal project) | Live | 2026-02-17 | BestRentNJ |
 
 ---
 

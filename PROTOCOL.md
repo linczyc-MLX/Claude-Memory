@@ -142,6 +142,7 @@ Same as above, but:
 | BRAND | N4S + Luxebrief | — | Universal brand guide covers both apps |
 | INFRA | N4S + Luxebrief | — | VPS, deployment, database, CI/CD |
 | UI | N4S | Luxebrief | UI refinements, usually module-specific |
+| BESTRENTNJ | BestRentNJ | — | Personal project — township news tool for Ricky |
 
 *Add new rows as new topics are created.*
 

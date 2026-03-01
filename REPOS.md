@@ -58,6 +58,15 @@
 - **Live URL**: https://rfq.not-4.sale
 - **Tech**: React frontend, Express/Node backend on VPS
 
+### BestRentNJ (Personal Project — Ricky)
+- **Location**: `~/Dropbox/"MY FILES"/MLX/PERSONAL/RICKY/bestrentnj-tool`
+- **Purpose**: Single-user township news tool for BestRentNJ.com — 27 NJ townships, monthly news posts
+- **Tech**: Node.js/Express + React/Vite + SQLite + BullMQ (Redis)
+- **Deploy**: Railway (`railway up --service bestrentnj-app`)
+- **Live URL**: https://ricky.longshot.productions
+- **DNS**: IONOS CNAME → nckpnbl2.up.railway.app
+- **Build system**: Railpack (NOT Nixpacks)
+
 ### Superpowers (Development Plugin)
 - **Repo**: `linczyc-MLX/Superpowers` (fork of obra/superpowers)
 - **URL**: https://github.com/linczyc-MLX/Superpowers

@@ -1,6 +1,6 @@
 # Project State: Luxebrief (Client Portal)
 
-> **Last Updated**: 2026-02-27
+> **Last Updated**: 2026-03-01
 
 ---
 
@@ -43,8 +43,10 @@
 ## Cross-Project Notes
 
 - Luxebrief generates PDFs (C1-C6) that N4S portal references
-- Phase 1 PDF migration (ITR-14) updated all 6 generators in Luxebrief's `server/n4sDatabase.ts`
-- ITR-21/22: Phase 1 bugs in C2/C3 and missing portal card need fixing in Luxebrief repo
+- ITR-24 Brand Guidelines Standardization COMPLETE (Feb 27) — 33/34 PDFs brand-compliant
+- All 18 generators verified: full pipeline `createDoc → addCoverPage → [content] → addProvenanceNotice → finalizeDoc`
+- Footer overlap bug fixed (commits `42fa450`, `6bc774a`)
+- BYT dual export removed, dead `BYTExportBrief.js` deleted (commit `ca55ca23`)
 - Parker Phase 2 will create a separate N4S-specific Parker on VPS alongside Luxebrief's Parker
 
 ---

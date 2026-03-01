@@ -1,6 +1,6 @@
 # Project State: N4S (Advisor Platform)
 
-> **Last Updated**: 2026-02-27
+> **Last Updated**: 2026-03-01
 
 ---
 
@@ -19,7 +19,7 @@
 
 ## Current Phase
 
-Active development on BYT module. Parker Phase 2 architecture approved but implementation not started.
+Active development on BYT module. Parker Phase 2 LIVE (v2.0.0-phase2d) — knowledge audit completed 2026-03-01, 30 corrections applied.
 
 ## Module Status
 
@@ -39,7 +39,7 @@ Active development on BYT module. Parker Phase 2 architecture approved but imple
 
 See `docs/memory/itr/ITR-MASTER.md` in N4S repo for full list. Key items:
 - ITR-10: BYT Synergy scoring pipeline testing
-- ITR-12: Parker Phase 2 (approved, not started)
+- ITR-12: Parker Phase 2 (LIVE — v2.0.0-phase2d, knowledge audit done)
 - ITR-13: BYT Documentation PDF
 - ITR-14: PDF Standard Migration (Phase 1 complete)
 - ITR-21/22: PDF Phase 1 bugs (C2/C3 BLUE, portal card)
