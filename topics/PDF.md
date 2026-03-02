@@ -53,11 +53,30 @@ The **Export Report** button in KYC (P1.A.1) calls the **VPS server-side** gener
 5. **Phase 5** — Build missing generators (E1-E4)
 6. **Phase 6** — Remove jsPDF/html2canvas/ReportLab dependencies
 
+### Taste Exploration PDF (Client-Side jsPDF) — Overhauled Mar 1
+Generator: `src/utils/TasteReportGenerator.js` (~1800 lines)
+Call sites: `src/components/KYC/sections/DesignIdentitySection.jsx`
+
+**Changes made (3 commits):**
+1. `778ddda0` — Principal report: pass `null` for profileS at all 4 call sites so no partner data appears. Added brand-standard cover page (addCoverPage method). Renamed addPage1Cover → addOverviewPage. Updated generate() flow: cover → overview → [partner alignment if both] → 3 selection pages → [narrative if exists] → provenance. Base page count 4→5.
+2. `0ff78183` — Partner narrative page: strip `**` markdown from H2/H3 headings. Fix table rendering with splitTextToSize + dynamic row heights. Replace Unicode emoji (✓⚠🚨) with ASCII (OK/CAUTION/ALERT) for jsPDF compatibility. Force page break before "Needs Facilitation" section.
+3. `061d3b83` — Polish: fix blank page (only break if y>120), fix CAUTIONCAUTION (multi-codepoint ⚠️ matched as pair), strip HTML entities (&p etc.) from all text, reduce narrative maxY to prevent overlap with Data Provenance panel.
+
+**Report variants:**
+- **Principal only** (5 pages): cover + overview + 3 selection pages + provenance
+- **Secondary only** (5 pages): same flow, uses stakeholderRole:'Secondary' + clientName from options
+- **Combined** (7+ pages): cover + overview + partner alignment + 3 selection pages + narrative + provenance
+
+**Secondary report**: no separate code needed — same generator, secondary call sites already pass secondary profile as profileP with null for profileS and include `stakeholderRole: 'Secondary'`.
+
+**LuXeBrief replication**: NOT YET DONE. Next step is to ensure the same Taste Exploration PDF is generated when clicking "Principal DNA" on the LuXeBrief portal.
+
 ## Next Steps
-1. Begin Phase 2: Migrate LuXeBrief C1-C6 generators to pdfBrandKit
-2. Fix Phase 1 cosmetic issues (page numbering, footer spacing)
-3. Consider removing orphaned client-side `KYCReportGenerator.js` (all PDF gen is now server-side)
-4. Validate each migrated report visually against PDF Standard
+1. **Replicate Taste Exploration PDF to LuXeBrief** — ensure "Principal DNA" button on LuXeBrief portal produces same report
+2. Begin Phase 2: Migrate LuXeBrief C1-C6 generators to pdfBrandKit
+3. Fix Phase 1 cosmetic issues (page numbering, footer spacing)
+4. Consider removing orphaned client-side `KYCReportGenerator.js` (all PDF gen is now server-side)
+5. Validate each migrated report visually against PDF Standard
 
 ## Last Session
-2026-03-01 — KYC Profile Report fully updated: fixed label maps, caption positioning, added P1.TLN Gantt chart, added all 35 missing fields. Full UI-to-PDF parity achieved. All changes on VPS (`n4sDatabase.ts`), deployed via `npm run build && pm2 restart luxebrief`.
+2026-03-01 — Taste Exploration PDF overhaul: principal/secondary reports now show own data only + brand-standard cover page. Partner narrative formatting fixed (markdown stripping, emoji→ASCII, table readability, page breaks, provenance overlap). 3 commits pushed (778ddda0, 0ff78183, 061d3b83). LuXeBrief replication still pending.

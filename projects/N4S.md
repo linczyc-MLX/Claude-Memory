@@ -7,7 +7,7 @@
 ## Git State
 
 - **Branch**: main
-- **Latest commit**: `0ff78183` — fix(KYC): improve partner narrative PDF formatting
+- **Latest commit**: `061d3b83` — fix(KYC): narrative PDF polish — blank page, CAUTIONCAUTION, &p artifacts, provenance overlap
 - **Repo**: linczyc-MLX/N4S
 
 ## Deploy State
@@ -19,7 +19,7 @@
 
 ## Current Phase
 
-Active development on BYT module. Parker Phase 2 LIVE (v2.0.0-phase2d). KYC Profile Report PDF fully updated (Mar 1) — all fields, Gantt chart, caption fix. Note: KYC PDF changes are on VPS `n4sDatabase.ts` (direct SSH edits, not in git yet).
+Active development on BYT module. Parker Phase 2 LIVE (v2.0.0-phase2d). KYC Profile Report PDF fully updated (Mar 1) — all fields, Gantt chart, caption fix. Taste Exploration PDF overhauled (Mar 1) — principal/secondary own-data-only, cover page, narrative formatting fixes. Note: KYC PDF changes are on VPS `n4sDatabase.ts` (direct SSH edits, not in git yet).
 
 ## Module Status
 
