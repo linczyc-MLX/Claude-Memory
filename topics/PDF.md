@@ -6,8 +6,7 @@ Unified PDF Architecture (ITR-23) — migrating all 32+ PDFs across the N4S ecos
 
 ## Current State
 - **ITR-23 Phase 1 COMPLETE** (Feb 26): pdfBrandKit foundation deployed to LuXeBrief (`/var/www/luxebrief/server/pdf/`). 8 fonts installed on VPS (`/var/www/shared/fonts/`). Test PDF validated (32KB).
-- **Phase 1 cosmetic issues noted**: page numbering on separate blank pages, footer text spacing — to address in Phase 2.
-- **KYC Profile Report** (A2): Phase 1 compliant — cover page, header all pages, accent stripe, 3-col footer, gold rules, bottom-third protection, provenance. Still Helvetica-only (Phase 2 will add Playfair+Inter).
+- **KYC Profile Report — FULLY UPDATED** (Mar 1): All 35 previously missing UI fields now in PDF. P1.TLN Gantt chart added. Caption positioning fixed. Label maps updated. 100% field parity between KYC UI and PDF.
 - **N4S-PDF-STANDARD.md**: Comprehensive spec (v1.0, Feb 2026) — covers page setup, colors, typography, cover page, headers, footers, tables, orphan protection, sliders, provenance.
 - **N4S-UNIFIED-PDF-PLAN.md**: Full migration roadmap — 4 phases.
 
@@ -17,7 +16,34 @@ Unified PDF Architecture (ITR-23) — migrating all 32+ PDFs across the N4S ecos
 - LuXeBrief `server/pdf/pdfBrandKit.ts` — Shared foundation (on VPS)
 - LuXeBrief `server/pdf/pdfFonts.ts` — Font registration
 - LuXeBrief `server/pdf/pdfLayout.ts` — Cover, headers, footers, orphan protection
+- LuXeBrief `server/n4sDatabase.ts` — KYC Profile Report generator (`generateKYCProfileReport()` ~line 886)
 - VPS `/var/www/shared/fonts/` — Playfair Display + Inter TTF files
+
+## Critical Knowledge
+
+### KYC PDF Routing (Important!)
+The **Export Report** button in KYC (P1.A.1) calls the **VPS server-side** generator, NOT the client-side `KYCReportGenerator.js`:
+- Button: `KYCModule.jsx` → `downloadServerPDF('kyc', 'profile-report', slug)`
+- Route: `luxebrief.not-4.sale/api/n4s/pdf/kyc/profile-report`
+- Generator: `n4sDatabase.ts` → `generateKYCProfileReport()` (PDFKit)
+- The client-side `src/components/KYC/KYCReportGenerator.js` (jsPDF) is **ORPHANED** — not called by any button. Changes there have no effect on the exported PDF.
+
+### KYC PDF Changes Made (Mar 1 Session)
+1. **Label maps fixed**: Discovery Timeline (`urgent/standard/flexible` → `<3mo / 3-6 / 6+`), Target Timeline (`urgent/24-36mo/36-48mo/flexible` → `<24mo / 24-36 / 36-48 / Flexible 48+`)
+2. **Caption positioning**: Section codes (P1.A.1, etc.) now render BELOW the heading gold line (was above)
+3. **Project Launch Date**: Added to P1.A.3 table
+4. **P1.TLN Project Timeline**: Full Gantt chart (9 phases, 3-layer opacity bars, vertical year/quarter markers) using projectParameters + budgetFramework directly (timelineData is not persisted to backend)
+5. **35 missing fields added** across all sections:
+   - P1.A.1: moveInExpectation, decisionMakingProcess, concurrentProjects, primaryResidences
+   - P1.A.3: specificAddress, architecturalIntegration, localKnowledgeCritical
+   - P1.A.4: perSFExpectation, architectFeeStructure, interiorDesignerFeeStructure
+   - P1.A.6: separateOfficesRequired, officeRequirements, hobbyDetails, dailyRoutinesSummary
+   - P1.A.7: storageNeeds, adjacencyRequirements, accessibilityRequirements
+   - P1.A.9: existingIndustryConnections
+6. **Gantt phase name shortened**: "Pre-Design & Team Assembly" → "Team Assembly"
+
+### Timeline Data Note
+`timelineData.complexityFactors` is computed client-side in AppContext but **never persisted** to the backend. The P1.TLN section uses `projectParameters.targetGSF`, `budgetFramework.interiorQualityTier`, and `projectParameters.siteTypology` directly — these ARE saved.
 
 ## Migration Phases
 1. **Phase 1** ✅ — Build pdfBrandKit + install fonts on VPS
@@ -30,7 +56,8 @@ Unified PDF Architecture (ITR-23) — migrating all 32+ PDFs across the N4S ecos
 ## Next Steps
 1. Begin Phase 2: Migrate LuXeBrief C1-C6 generators to pdfBrandKit
 2. Fix Phase 1 cosmetic issues (page numbering, footer spacing)
-3. Validate each migrated report visually against PDF Standard
+3. Consider removing orphaned client-side `KYCReportGenerator.js` (all PDF gen is now server-side)
+4. Validate each migrated report visually against PDF Standard
 
 ## Last Session
-2026-03-01 — Topic file created (first PDF-specific session).
+2026-03-01 — KYC Profile Report fully updated: fixed label maps, caption positioning, added P1.TLN Gantt chart, added all 35 missing fields. Full UI-to-PDF parity achieved. All changes on VPS (`n4sDatabase.ts`), deployed via `npm run build && pm2 restart luxebrief`.

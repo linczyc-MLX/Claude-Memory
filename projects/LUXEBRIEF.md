@@ -1,6 +1,6 @@
 # Project State: Luxebrief (Client Portal)
 
-> **Last Updated**: 2026-03-01
+> **Last Updated**: 2026-03-01 (PDF session)
 
 ---
 
@@ -39,6 +39,12 @@
 - Client-facing persona: warm butler, limited knowledge, portal auth
 - Conversations stored in PostgreSQL (parker_conversations, parker_messages, parker_client_memory)
 - This serves as the "gold standard reference" for N4S Parker Phase 2
+
+## KYC Profile Report (n4sDatabase.ts)
+- `generateKYCProfileReport()` at ~line 886 — server-side PDFKit generator
+- Called by N4S Export Report button via `luxebrief.not-4.sale/api/n4s/pdf/kyc/profile-report`
+- **Mar 1**: All 35 missing fields added, P1.TLN Gantt chart, caption positioning fixed, label maps updated
+- **WARNING**: Changes were made directly on VPS via SSH/python patch scripts — NOT committed to git. Must be committed to Luxebrief repo to persist across deploys.
 
 ## Cross-Project Notes
 

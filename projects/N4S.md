@@ -7,7 +7,7 @@
 ## Git State
 
 - **Branch**: main
-- **Latest commit**: `ea726556` — Add expandable detail view to saved Synergy configurations
+- **Latest commit**: `0ff78183` — fix(KYC): improve partner narrative PDF formatting
 - **Repo**: linczyc-MLX/N4S
 
 ## Deploy State
@@ -19,7 +19,7 @@
 
 ## Current Phase
 
-Active development on BYT module. Parker Phase 2 LIVE (v2.0.0-phase2d) — contextBuilder major fix deployed 2026-03-01 (18 new extractions + 21 KYC Tier 1 fields + MVP path correction + relay audit complete).
+Active development on BYT module. Parker Phase 2 LIVE (v2.0.0-phase2d). KYC Profile Report PDF fully updated (Mar 1) — all fields, Gantt chart, caption fix. Note: KYC PDF changes are on VPS `n4sDatabase.ts` (direct SSH edits, not in git yet).
 
 ## Module Status
 
