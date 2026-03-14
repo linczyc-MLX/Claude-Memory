@@ -75,6 +75,35 @@ The visual language should feel like a private banking report or a luxury hotel'
 
 ---
 
+## PDF Document Footer (Approved Standard)
+
+Every generated PDF across the Not4Sale ecosystem uses this exact 3-column footer on **every page**, including the cover.
+
+### Layout
+
+| Left | Center | Right |
+|------|--------|-------|
+| `© 2026 Not4Sale LLC — Luxury Residential Advisory • Confidential` | Report date (e.g. "March 13, 2026") | `Page X of Y` |
+
+### Specs
+
+| Property | Value |
+|----------|-------|
+| **Font** | Inter (ideal) or Helvetica (fallback) |
+| **Size** | 7pt |
+| **Color** | Muted `#6b6b6b` |
+| **Divider line** | 0.5pt, `#e5e5e0` (Border), full width, 35pt from page bottom |
+| **Text position** | 28pt from page bottom |
+
+### Rules
+- Footer appears on **every page** — no exceptions, including cover
+- Copyright reads "Not4Sale LLC" (not "N4S")
+- Full phrase: "Luxury Residential Advisory • Confidential"
+- Date format: "Month DD, YYYY" (e.g. "March 13, 2026")
+- Detailed implementation spec: N4S repo `docs/N4S-PDF-STANDARD.md` §7
+
+---
+
 ## Status
 
 This universal brand guide is a **work in progress** under the BRAND topic. The full version will:
